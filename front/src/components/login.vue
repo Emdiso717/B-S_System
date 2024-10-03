@@ -1,5 +1,4 @@
 <script>
-
 import {Lock, Message, User} from "@element-plus/icons-vue";
 import axios from "axios";
 import {ElMessage} from "element-plus";
@@ -25,6 +24,12 @@ export default {
         let message = response.data
         if (message.includes("success")) {
           ElMessage.success(message)
+          this.$router.push({
+            name:"Main",
+            query:{
+              account:this.account
+            }
+          })
         } else {
           ElMessage.error(message)
         }
@@ -50,6 +55,7 @@ export default {
             }).then(response => {
           let message = response.data
           if (message.includes("success")) {
+            this.new_acc=1
             ElMessage.success(message)
           } else {
             ElMessage.error(message)
@@ -162,7 +168,7 @@ export default {
   top:50%;
   left:50%;
   width: 450px;
-  height: 80%;
+  height: 620px;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
