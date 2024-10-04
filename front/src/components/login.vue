@@ -167,7 +167,7 @@ export default {
   background-color: #74caf4;
   top:50%;
   left:50%;
-  width: 450px;
+  width: 400px;
   height: 620px;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -200,8 +200,10 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  width: 400px;
+  height: 620px;
   z-index: 1;
-  clip-path: inset(0 0 0 0);
+  overflow: hidden;
 }
 .shape {
   transform: rotate(45deg);
