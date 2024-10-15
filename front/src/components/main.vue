@@ -76,7 +76,9 @@ export default {
             </form>
           </div>
         <div class="commodity">
-
+          <el-card class="good_card">
+            <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
+          </el-card>
         </div>
       </el-main>
     </el-container>
@@ -97,11 +99,10 @@ export default {
 }
 .search-box{
   position: absolute;
-  margin-left: 50vw;
+  margin-left: 18vw;
   margin-top: 1%;
-  width: 60vw;
+  width: 60%;
   height: 10%;
-  transform: translateX(-80%);
 }
 .header{
   position: absolute;
@@ -125,7 +126,7 @@ export default {
   top: 8vh;
   left: 0;
   height: 92vh;
-  width: 8vh;
+  width: 4vw;
   background-color: #0b59cf;
 }
 .el-menu-vertical-demo{
@@ -141,8 +142,8 @@ export default {
 .main{
   position: absolute;
   top: 8vh;
-  left: 8vh;
-  width: 92%;
+  left: 4vw;
+  width: 96%;
   height: 92%;
 }
 .input {
@@ -165,7 +166,7 @@ export default {
   background-color: #0b59cf;
   margin-left: 1%;
   padding: 2.5% 0.5%;
-  width: auto;
+  width: 10vw;
   border-radius: 10px;
   border: 2px solid #0b59cf;
   box-shadow: 0 4px 16px rgb(10, 64, 165,0.2);
@@ -193,5 +194,69 @@ export default {
   left: 3%;
   width: 93%;
   min-height:82%;
+}
+.good_card{
+  width: 35%;
+  height: 40%;
+}
+@media (max-width: 500px) {
+  .aside{
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    height:92vh;
+    width: 12vw;
+  }
+  .main{
+    position: absolute;
+    top: 8vh;
+    left: 12vw;
+    width: 88%;
+    height:92%;
+  }
+  .search-box{
+    position: absolute;
+    margin-left: 2vw;
+    margin-top: 1%;
+    width: 50%;
+    height: 10%;
+  }
+  .input {
+    font-size: 14px;
+    border: 2px solid #464646;
+    width: 90vw;
+    background: none;
+    padding: 4% 3% 4% 3%;
+    font-weight: 600;
+    transition: .2s;
+    border-radius: 5px;
+  }
+  .input:active,
+  .input:focus,
+  .input:hover {
+    outline: none;
+    border-color: #6897e3;
+  }
+  .button {
+    background-color: #0b59cf;
+    margin-left: 2%;
+    padding: 2.5% 0.5%;
+    width: 20vw;
+    border-radius: 10px;
+    border: 2px solid #0b59cf;
+    box-shadow: 0 4px 16px rgb(10, 64, 165,0.2);
+    transition: .2s;
+    color: #f5f7f8;
+  }
+  .button:active,
+  .button:focus,
+  .button:hover {
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+    color: #2f4a78;
+    border-color: #2861bf;
+    box-shadow: 0 4px 16px rgba(40, 97, 191, 0.6);
+    border-width: 3px;
+  }
 }
 </style>

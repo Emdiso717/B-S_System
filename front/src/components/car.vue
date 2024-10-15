@@ -91,7 +91,7 @@ export default {
   top: 8vh;
   left: 0;
   height: 92vh;
-  width: 8vh;
+  width: 4vw;
   background-color: #0b59cf;
 }
 .el-menu-vertical-demo{
@@ -107,8 +107,24 @@ export default {
 .main{
   position: absolute;
   top: 8vh;
-  left: 8vh;
-  width: 92%;
+  left: 4vw;
+  width: 96%;
   height: 92%;
+}
+@media (max-width: 500px) {
+  .aside{
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    height:92vh;
+    width: 12vw;
+  }
+  .main{
+    position: absolute;
+    top: 8vh;
+    left: 12vw;
+    width: 88%;
+    height:92%;
+  }
 }
 </style>

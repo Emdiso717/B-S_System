@@ -167,7 +167,7 @@ export default {
   background-color: #74caf4;
   top:50%;
   left:50%;
-  width: 400px;
+  width: 480px;
   height: 620px;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -200,7 +200,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 400px;
+  width: 480px;
   height: 620px;
   z-index: 1;
   overflow: hidden;
@@ -241,7 +241,7 @@ export default {
   width: 200px;
   background: #3875d1;
   top: 430px;
-  right: -50px;
+  right: -100px;
   border-radius: 60px;
 }
 
@@ -275,5 +275,71 @@ export default {
 .text{
   font-weight: 700;
   text-transform: uppercase;
+}
+@media (max-width: 500px) {
+  .form{
+    position: relative;
+    background-color: #74caf4;
+    top:50%;
+    left:50%;
+    width: 360px;
+    height: 620px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .form:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 360px;
+    height: 620px;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .shape {
+    transform: rotate(45deg);
+    position: absolute;
+  }
+  .shape1 {
+    height: 550px;
+    width: 720px;
+    background: #FFF;
+    top: -20px;
+    right: 80px;
+    border-radius: 0 72px 0 0;
+  }
+
+  .shape2 {
+    height: 200px;
+    width: 300px;
+    background: #3875d7;
+    top: -180px;
+    right: 60px;
+    border-radius: 32px;
+  }
+
+  .shape3 {
+    height: 640px;
+    width: 300px;
+    background: linear-gradient(270deg, #5897fb, #003366);
+    top: -80px;
+    right: -65px;
+    border-radius: 32px;
+  }
+
+  .shape4 {
+    height: 250px;
+    width: 200px;
+    background: #3875d1;
+    top: 430px;
+    right: -100px;
+    border-radius: 60px;
+  }
 }
 </style>

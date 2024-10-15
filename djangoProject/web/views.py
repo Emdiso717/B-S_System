@@ -10,6 +10,7 @@ import json
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+import web.JD_spider as JD
 @csrf_exempt
 def login(request):
         data = json.loads(request.body)
@@ -42,8 +43,9 @@ def register(request):
 
 @csrf_exempt
 def search(request):
-        #TODO: 搜索API逻辑补充
         data=json.load(request)
         search=data.get('search')
+        goods = JD.search_goods(search)
         print(search)
+        print(goods)
         return  HttpResponse("success")
