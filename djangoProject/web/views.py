@@ -38,3 +38,12 @@ def register(request):
                 return HttpResponse("success")
         except IntegrityError as e2:
                 return HttpResponse("错误：用户名重复使用")
+
+
+@csrf_exempt
+def search(request):
+        #TODO: 搜索API逻辑补充
+        data=json.load(request)
+        search=data.get('search')
+        print(search)
+        return  HttpResponse("success")

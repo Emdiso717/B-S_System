@@ -1,12 +1,15 @@
 <script >
 import {Document, HomeFilled, Setting, ShoppingCartFull, User, UserFilled} from "@element-plus/icons-vue";
+import axios from "axios";
+import {ElMessage} from "element-plus";
 
 export default {
   components: {User, ShoppingCartFull, UserFilled, HomeFilled, Setting, Document},
   data(){
     return{
       account:'',
-      isCollapse:true
+      isCollapse:true,
+      search:'',
     }
   },
   created() {
@@ -20,6 +23,16 @@ export default {
         path: path,
         query: currentRoute.query
       });
+    },
+    Search(){
+      axios.post("/search",
+          {
+            search:this.search
+          }).then(response => {
+        let message = response.data
+        if (message.includes("success")) {
+          ElMessage.success(message)}
+      })
     }
   }
 }
@@ -54,14 +67,17 @@ export default {
       </el-aside>
       </el-container>
       <el-main class="main">
-        <el-scrollbar height="100%">
           <div class="search-box">
-            <form>
-              <input type="text" name="q" placeholder="输入搜索内容...">
-              <input type="submit" value="搜索">
+            <form class="inline">
+              <input v-model="search" type="text" class="input" placeholder="搜一下就知道！">
+              <el-button class="button" @click="Search">
+                <span class="text">Search</span>
+              </el-button>
             </form>
           </div>
-        </el-scrollbar>
+        <div class="commodity">
+
+        </div>
       </el-main>
     </el-container>
 </template>
@@ -75,9 +91,17 @@ export default {
   width: 100%;
   height: 100%;
 }
+.inline{
+  display: flex;
+  align-items: center;
+}
 .search-box{
-  margin-left: 40%;
-  margin-top: 10%;
+  position: absolute;
+  margin-left: 50vw;
+  margin-top: 1%;
+  width: 60vw;
+  height: 10%;
+  transform: translateX(-80%);
 }
 .header{
   position: absolute;
@@ -120,5 +144,54 @@ export default {
   left: 8vh;
   width: 92%;
   height: 92%;
+}
+.input {
+  font-size: 16px;
+  border: 2px solid #464646;
+  width: 90vw;
+  background: none;
+  padding: 1.5% 3% 1.5% 3%;
+  font-weight: 600;
+  transition: .2s;
+  border-radius: 5px;
+}
+.input:active,
+.input:focus,
+.input:hover {
+  outline: none;
+  border-color: #6897e3;
+}
+.button {
+  background-color: #0b59cf;
+  margin-left: 1%;
+  padding: 2.5% 0.5%;
+  width: auto;
+  border-radius: 10px;
+  border: 2px solid #0b59cf;
+  box-shadow: 0 4px 16px rgb(10, 64, 165,0.2);
+  transition: .2s;
+  color: #f5f7f8;
+}
+.button:active,
+.button:focus,
+.button:hover {
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  color: #2f4a78;
+  border-color: #2861bf;
+  box-shadow: 0 4px 16px rgba(40, 97, 191, 0.6);
+  border-width: 3px;
+}
+.text{
+  font-size:2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.commodity{
+  position: absolute;
+  top: 15%;
+  left: 3%;
+  width: 93%;
+  min-height:82%;
 }
 </style>

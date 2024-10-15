@@ -54,8 +54,7 @@ export default {
       </el-aside>
     </el-container>
     <el-main class="main">
-      <el-scrollbar height="100%">
-      </el-scrollbar>
+      
     </el-main>
   </el-container>
 </template>
@@ -104,11 +103,5 @@ export default {
 .icon{
   margin-top: 20%;
 }
-.main{
-  position: absolute;
-  top: 8vh;
-  left: 8vh;
-  width: 92%;
-  height: 92%;
-}
+
 </style>
