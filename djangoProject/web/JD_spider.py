@@ -40,7 +40,6 @@ def login():
 def search_goods(goods):
     options = EdgeOptions()
     options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     driver = webdriver.Edge(options=options)
     driver.execute_cdp_cmd(
@@ -67,7 +66,6 @@ def search_goods(goods):
     search_button.click()
     sleep(2)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-    sleep(2)
     html = etree.HTML(driver.page_source)
     li_list = html.xpath('//ul[@class="gl-warp clearfix"]/li')
     goods_all = []
@@ -78,10 +76,15 @@ def search_goods(goods):
         if not goods_img:
             goods_img = li.xpath('./div/div[@class="p-img"]/a/img/@data-lazy-img')
         dic["img"] = "https:" + goods_img[0]
-        dic["title"] = li.xpath(
-            './div/div[@class="p-name p-name-type-2"]/a/em//text()'
-        )[0]
-        dic["shop"] = li.xpath('./div/div[@class="p-shop"]/span/a/text()')
+        title = li.xpath('./div/div[@class="p-name"]/a/em/text()')
+        if not title :
+            title = li.xpath('./div/div[@class="p-name"]/a/em/text()')
+        if not title:
+            title = li.xpath(
+                './div/div[@class="p-name p-name-type-2"]/a/em/text()'
+            )
+        dic["title"] =''.join(title)
+        dic["shop"] = ''.join(li.xpath('./div/div[@class="p-shop"]/span/a/text()'))
         dic["price"] = li.xpath('./div/div[@class="p-price"]/strong/i/text()')[0]
         goods_sales = li.xpath('./div/div[@class="p-commit"]/strong/a/text()')
         if not goods_sales:
@@ -91,6 +94,5 @@ def search_goods(goods):
             li.xpath('./div/div[@class="p-name p-name-type-2"]/a/@href')
         )
         goods_all.append(dic)
-    print(goods_all)
     driver.quit()
     return goods_all

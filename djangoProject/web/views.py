@@ -46,6 +46,4 @@ def search(request):
         data=json.load(request)
         search=data.get('search')
         goods = JD.search_goods(search)
-        print(search)
-        print(goods)
-        return  HttpResponse("success")
+        return JsonResponse(goods,safe=False)
