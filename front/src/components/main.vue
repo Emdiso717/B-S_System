@@ -107,11 +107,7 @@ export default {
   },
   methods: {
     checkWidth() {
-      if (window.innerWidth < 500) {
-        this.shouldShow = false;
-      } else {
-        this.shouldShow = true;
-      }
+      this.shouldShow = window.innerWidth >= 500;
     },
     changeRoute(path) {
       const currentRoute = this.$route;
@@ -134,6 +130,25 @@ export default {
           console.log(this.JD_search_goods)
         }
         this.load=false;
+      })
+    },
+    add_car_JD(good){
+      axios.post("/add",
+          {
+            good_id:good.id,
+            good_from:'JD',
+            good_title:good.title,
+            good_link:good.link,
+            good_img:good.img,
+            account:this.account,
+            good_price:good.price
+          }).then(response => {
+        let message = response.data
+        if(message.includes("success")){
+          ElMessage.success("添加成功")
+        }else {
+          ElMessage.error(message)
+        }
       })
     },
     changeStyle1() {
@@ -325,7 +340,7 @@ export default {
                     <el-button  class="card_button" @click="JD_fork(good)">
                       <span class="text card_text ">固定</span>
                     </el-button>
-                    <el-button  class="card_button" >
+                    <el-button  class="card_button" @click="add_car_JD(good)" >
                       <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
                     </el-button>
                     <el-button  class="card_button" >
@@ -405,7 +420,7 @@ export default {
             <p class="card_price">￥{{fork_JD_good.price}}</p>
             <p class="card_font card_shop_font">店铺：{{fork_JD_good.shop}}</p>
             <p class="card_font card_shop_font">销量：{{fork_JD_good.sales}}</p>
-            <el-button  class="card_button" >
+            <el-button  class="card_button" @click="add_car_JD(this.fork_JD_good)">
               <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
             </el-button>
             <el-button  class="card_button" >
