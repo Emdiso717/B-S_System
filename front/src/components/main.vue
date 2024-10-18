@@ -391,15 +391,93 @@ export default {
 
   <el-dialog
       v-model="open_compare"
-      title="Tips"
-      width="500"
-      class="dialog"
+      width="70%"
   >
-    <span>This is a message</span>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button @click="open_compare = false">关闭</el-button>
+    <template #header>
+      <span class="dia_font">详细比价</span>
+    </template>
+    <div class="dialog_body">
+      <div  class="JD" >
+        <el-card class="good_card">
+          <div v-if="Object.keys(fork_JD_good).length > 0" >
+            <img class="image" :src="fork_JD_good.img" :alt="fork_JD_good.id">
+            <p class="card_font">{{fork_JD_good.title}}</p>
+            <p class="card_price">￥{{fork_JD_good.price}}</p>
+            <p class="card_font card_shop_font">店铺：{{fork_JD_good.shop}}</p>
+            <p class="card_font card_shop_font">销量：{{fork_JD_good.sales}}</p>
+            <el-button  class="card_button" >
+              <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
+            </el-button>
+            <el-button  class="card_button" >
+              <span class="text card_text"  @click="openLink(fork_JD_good.link)">详情</span>
+            </el-button>
+            <el-button class="card_button" @click="fork_JD_good={}">
+              <span class="text filter_text">清除</span>
+              <span class="text filter_text" style="color: brown">京东</span>
+            </el-button>
+          </div>
+          <div v-else class="dia_compare">
+            <p class="no_goods">请添加</p>
+            <span class="no_goods" style="color: brown">京东</span>
+            <p class="no_goods">商品</p>
+          </div>
+        </el-card>
       </div>
+      <div  class="JD" >
+        <el-card class="good_card">
+          <div  v-if="Object.keys(fork_SN_good).length > 0">
+            <img class="image" :src="fork_SN_good.img" :alt="fork_SN_good.id">
+            <p class="card_font">{{fork_SN_good.title}}</p>
+            <p class="card_price">￥{{fork_SN_good.price}}</p>
+            <p class="card_font card_shop_font">{{fork_SN_good.shop}}</p>
+            <el-button  class="card_button" >
+              <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
+            </el-button>
+            <el-button  class="card_button" >
+              <span class="text card_text"  @click="openLink(fork_SN_good.link)">详情</span>
+            </el-button>
+            <el-button class="card_button" @click="fork_SN_good={}">
+              <span class="text filter_text">清除</span>
+              <span class="text filter_text" style="color: #edd55c">苏宁</span>
+            </el-button>
+          </div>
+          <div v-else class="dia_compare">
+            <p class="no_goods">请添加</p>
+            <span class="no_goods" style="color: #edd55c">苏宁</span>
+            <p class="no_goods">商品</p>
+          </div>
+        </el-card>
+      </div>
+      <div  class="JD" >
+        <el-card class="good_card">
+          <div v-if="Object.keys(fork_A_good).length > 0" >
+            <img class="image" :src="fork_A_good.img" :alt="fork_A_good.id">
+            <p class="card_font">{{fork_A_good.title}}</p>
+            <p class="card_price">￥{{fork_A_good.price}}</p>
+            <p class="card_font card_shop_font">{{fork_A_good.shop}}</p>
+            <el-button  class="card_button" >
+              <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
+            </el-button>
+            <el-button  class="card_button" >
+              <span class="text card_text"  @click="openLink(fork_A_good.link)">详情</span>
+            </el-button>
+            <el-button class="card_button" @click="fork_A_good={}">
+              <span class="text filter_text">清除</span>
+              <span class="text filter_text" style="color: #e145df">唯品会</span>
+            </el-button>
+          </div>
+          <div v-else class="dia_compare">
+            <p class="no_goods">请添加</p>
+            <span class="no_goods" style="color: #e145df">唯品会</span>
+            <p class="no_goods">商品</p>
+          </div>
+        </el-card>
+      </div>
+    </div>
+    <template #footer>
+      <el-button class="button dia_button" @click="open_compare = false">
+        <span class="text">关闭</span>
+      </el-button>
     </template>
   </el-dialog>
 </template>
@@ -560,7 +638,7 @@ export default {
   font-size: 13px;
   font-style: italic;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .image{
   height: 50%;
@@ -660,6 +738,34 @@ export default {
 .filter_input{
   margin-top: 10px;
   width: 70%!important;
+}
+.dia_font{
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #0b59cf;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+.dia_button{
+  width: 90px;
+  height: 10px!important;
+}
+.dialog_body{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+.dia_compare{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80%;
+  font-size: 20px !important;
 }
 @media (max-width: 500px) {
   .aside{
