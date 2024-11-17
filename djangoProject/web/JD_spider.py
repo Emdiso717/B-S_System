@@ -8,6 +8,8 @@ from time import sleep
 import json
 
 
+# print(cookies)
+
 def login():
     url = "https://passport.jd.com/new/login.aspx"
     options = EdgeOptions()
@@ -40,6 +42,9 @@ def login():
 def search_goods(goods):
     options = EdgeOptions()
     options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=ImagesEnabled")
+    options.add_argument("--disable-javascript")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     driver = webdriver.Edge(options=options)
     driver.execute_cdp_cmd(
@@ -48,25 +53,16 @@ def search_goods(goods):
             "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
         },
     )
-    driver.maximize_window()
     url = "https://www.jd.com"
     driver.get(url)
     with open("./web/cookies.json", "r") as file:
         cookies = json.load(file)
     for cookie in cookies:
         driver.add_cookie(cookie)
-    driver.refresh()
-    search_box = driver.find_element(
-        By.CSS_SELECTOR, "input[clstag='h|keycount|h|keycount|head|search_c']"
-    )
-    search_box.send_keys(goods)
-    search_button = driver.find_element(
-        By.CSS_SELECTOR, "button[clstag='h|keycount|h|keycount|head|search_a']"
-    )
-    search_button.click()
-    sleep(2)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    url = "https://search.jd.com/Search?keyword=%s" % goods
+    driver.get(url)
     html = etree.HTML(driver.page_source)
+    driver.quit()
     li_list = html.xpath('//ul[@class="gl-warp clearfix"]/li')
     goods_all = []
     for li in li_list:
@@ -78,21 +74,16 @@ def search_goods(goods):
         dic["img"] = "https:" + goods_img[0]
         title = li.xpath('./div/div[@class="p-name"]/a/em/text()')
         if not title :
-            title = li.xpath('./div/div[@class="p-name"]/a/em/text()')
+            title = li.xpath('.//div/div[@class="p-name"]/a/em//font/text() | .//div/div[@class="p-name"]/a/em/text()')
         if not title:
             title = li.xpath(
-                './div/div[@class="p-name p-name-type-2"]/a/em/text()'
+                './/div/div[@class="p-name p-name-type-2"]/a/em//font/text() | .//div/div[@class="p-name p-name-type-2"]/a/em/text()'
             )
         dic["title"] =''.join(title)
         dic["shop"] = ''.join(li.xpath('./div/div[@class="p-shop"]/span/a/text()'))
         dic["price"] = li.xpath('./div/div[@class="p-price"]/strong/i/text()')[0]
-        goods_sales = li.xpath('./div/div[@class="p-commit"]/strong/a/text()')
-        if not goods_sales:
-            goods_sales.append("未知")
-        dic["sales"] = goods_sales[0]
         dic["link"] = "https:" + "".join(
             li.xpath('./div/div[@class="p-name p-name-type-2"]/a/@href')
         )
         goods_all.append(dic)
-    driver.quit()
     return goods_all

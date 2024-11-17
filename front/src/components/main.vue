@@ -118,16 +118,20 @@ export default {
     },
     Search(){
       this.load=true;
-      axios.post("/search",
-          {
-            search:this.search
-          }).then(response => {
-        let message = response.data
-        if(message.length ===0){
+      Promise.all([
+        axios.post("/searchJD", {search:this.search}),
+        axios.post("/searchSN", {search:this.search}),
+        axios.post("/searchA", {search:this.search}),
+      ]).then(response => {
+        const [response1, response2, response3] = response;
+        let message1 = response1.data
+        let message2 = response2.data
+        if(message1.length ===0 && message2.length ===0){
           ElMessage.error("没有结果")
         }else {
-          this.JD_search_goods=message
-          console.log(this.JD_search_goods)
+          this.JD_search_goods=response1.data;
+          this.SN_search_goods=response2.data;
+          this.A_search_goods=response3.data;
         }
         this.load=false;
       })
@@ -137,6 +141,44 @@ export default {
           {
             good_id:good.id,
             good_from:'JD',
+            good_title:good.title,
+            good_link:good.link,
+            good_img:good.img,
+            account:this.account,
+            good_price:good.price
+          }).then(response => {
+        let message = response.data
+        if(message.includes("success")){
+          ElMessage.success("添加成功")
+        }else {
+          ElMessage.error(message)
+        }
+      })
+    },
+    add_car_SN(good){
+      axios.post("/add",
+          {
+            good_id:good.id,
+            good_from:'SN',
+            good_title:good.title,
+            good_link:good.link,
+            good_img:good.img,
+            account:this.account,
+            good_price:good.price
+          }).then(response => {
+        let message = response.data
+        if(message.includes("success")){
+          ElMessage.success("添加成功")
+        }else {
+          ElMessage.error(message)
+        }
+      })
+    },
+    add_car_A(good){
+      axios.post("/add",
+          {
+            good_id:good.id,
+            good_from:'A',
             good_title:good.title,
             good_link:good.link,
             good_img:good.img,
@@ -185,10 +227,17 @@ export default {
       }
     },
     sortProducts() {
-      if(this.acc)
+      if(this.acc){
         this.JD_search_goods.sort((a, b) => parseFloat(a.price)-parseFloat(b.price));
-      else
+        this.SN_search_goods.sort((a, b) => parseFloat(a.price)-parseFloat(b.price));
+        this.A_search_goods.sort((a, b) => parseFloat(a.price)-parseFloat(b.price));
+      }
+      else{
         this.JD_search_goods.sort((a, b) => parseFloat(b.price)-parseFloat(a.price));
+        this.SN_search_goods.sort((a, b) => parseFloat(b.price)-parseFloat(a.price));
+        this.A_search_goods.sort((a, b) => parseFloat(b.price)-parseFloat(a.price));
+      }
+
     this.acc=!this.acc
     },
   },
@@ -198,7 +247,19 @@ export default {
           !this.filter_search ||
           data.title.toLowerCase().includes(this.filter_search.toLowerCase())
       );
-      }
+      },
+    SN_search_goods() {
+      return this.SN_search_goods.filter(data =>
+          !this.filter_search ||
+          data.title.toLowerCase().includes(this.filter_search.toLowerCase())
+      );
+    },
+    A_search_goods() {
+      return this.A_search_goods.filter(data =>
+          !this.filter_search ||
+          data.title.toLowerCase().includes(this.filter_search.toLowerCase())
+      );
+    }
   },
   mounted() {
     this.checkWidth();
@@ -240,8 +301,8 @@ export default {
       </el-container>
       <el-container class="header2">
         <div class="search-box">
-          <form class="inline">
-            <input v-model="search" type="text" class="input" placeholder="搜一下就知道！">
+          <form class="inline" onsubmit="return false;">
+            <input v-model="search" type="text" class="input" placeholder="搜一下就知道！" @keydown.enter="Search" >
             <el-button class="button" @click="Search">
               <span class="text">Search</span>
             </el-button>
@@ -343,8 +404,8 @@ export default {
                     <el-button  class="card_button" @click="add_car_JD(good)" >
                       <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
                     </el-button>
-                    <el-button  class="card_button" >
-                      <span class="text card_text"  @click="openLink(good.link)">详情</span>
+                    <el-button  class="card_button" @click="openLink(good.link)">
+                      <span class="text card_text" >详情</span>
                     </el-button>
                   </div>
                 </template>
@@ -365,11 +426,11 @@ export default {
                   <el-button  class="card_button" @click="SN_fork(good)">
                     <span class="text card_text ">固定</span>
                   </el-button>
-                  <el-button  class="card_button" >
+                  <el-button  class="card_button" @click="add_car_SN(good)">
                     <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
                   </el-button>
-                  <el-button  class="card_button" >
-                    <span class="text card_text"  @click="openLink(good.link)">详情</span>
+                  <el-button  class="card_button" @click="openLink(good.link)">
+                    <span class="text card_text" >详情</span>
                   </el-button>
                 </div>
               </template>
@@ -390,11 +451,11 @@ export default {
                   <el-button  class="card_button" @click="A_fork(good)">
                     <span class="text card_text ">固定</span>
                   </el-button>
-                  <el-button  class="card_button" >
+                  <el-button  class="card_button" @click="add_car_A(good)">
                     <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
                   </el-button>
-                  <el-button  class="card_button" >
-                    <span class="text card_text"  @click="openLink(good.link)">详情</span>
+                  <el-button  class="card_button" @click="openLink(good.link)" >
+                    <span class="text card_text" >详情</span>
                   </el-button>
                 </div>
               </template>
@@ -423,8 +484,8 @@ export default {
             <el-button  class="card_button" @click="add_car_JD(this.fork_JD_good)">
               <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
             </el-button>
-            <el-button  class="card_button" >
-              <span class="text card_text"  @click="openLink(fork_JD_good.link)">详情</span>
+            <el-button  class="card_button"  @click="openLink(fork_JD_good.link)">
+              <span class="text card_text" >详情</span>
             </el-button>
             <el-button class="card_button" @click="fork_JD_good={}">
               <span class="text filter_text">清除</span>
@@ -448,8 +509,8 @@ export default {
             <el-button  class="card_button" >
               <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
             </el-button>
-            <el-button  class="card_button" >
-              <span class="text card_text"  @click="openLink(fork_SN_good.link)">详情</span>
+            <el-button  class="card_button" @click="openLink(fork_SN_good.link)">
+              <span class="text card_text" >详情</span>
             </el-button>
             <el-button class="card_button" @click="fork_SN_good={}">
               <span class="text filter_text">清除</span>
@@ -473,8 +534,8 @@ export default {
             <el-button  class="card_button" >
               <span class="text card_text_icon"><el-icon><ShoppingCartFull /></el-icon></span>
             </el-button>
-            <el-button  class="card_button" >
-              <span class="text card_text"  @click="openLink(fork_A_good.link)">详情</span>
+            <el-button  class="card_button"  @click="openLink(fork_A_good.link)">
+              <span class="text card_text" >详情</span>
             </el-button>
             <el-button class="card_button" @click="fork_A_good={}">
               <span class="text filter_text">清除</span>
