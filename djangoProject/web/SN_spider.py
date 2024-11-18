@@ -7,6 +7,7 @@ from lxml import etree
 from time import sleep
 import re
 import json
+src = 0
 
 def search_good(goods):
     options = EdgeOptions()
@@ -63,3 +64,48 @@ def search_good(goods):
         )
         good_all.append(dic)
     return good_all
+
+def login():
+    url = "https://passport.suning.com/ids/login"
+    options = EdgeOptions()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=ImagesEnabled")
+    options.add_argument("--disable-javascript")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    driver = webdriver.Edge(options=options)
+    driver.execute_cdp_cmd(
+        "Page.addScriptToEvaluateOnNewDocument",
+        {
+            "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
+        },
+    )
+    driver.get(url)
+    button = driver.find_element(By.XPATH, '//a[@aria-label="微信联合登录"]')
+    button.click()
+    wait = WebDriverWait(driver, 360)
+    try:
+        wait.until(EC.title_is("微信登录"))
+    except Exception as e:
+        print("还未跳转")
+    html = etree.HTML(driver.page_source)
+    sleep(0.5)
+    global src
+    src = "https://open.weixin.qq.com"+html.xpath('//div[@class="web_qrcode_img_wrp"]/img/@src')[0]
+    try:
+        wait.until(EC.title_is("苏宁易购(Suning.com)-换新到苏宁 省钱更省心！"))
+    except Exception as e:
+        print("还未登录")
+    if driver.title != "用户登录" and driver.title != "微信登录":
+        cookies = driver.get_cookies()
+        with open("./web/cookies_SN.json", "w") as file:
+            json.dump(cookies, file, indent=4)
+        src = 0
+        return True
+
+
+def get_src():
+    global src
+    while src ==0:
+        pass
+    return src

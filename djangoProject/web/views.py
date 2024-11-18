@@ -1,4 +1,5 @@
 from audioop import error
+from time import sleep
 
 from django.contrib.auth import authenticate
 from django.contrib.messages import success
@@ -197,3 +198,32 @@ def car_delete(request):
         except IntegrityError as e2:
                 return HttpResponse("错误")
 
+@csrf_exempt
+def get_A(request):
+        src = A.get_src()
+        print(src)
+        return HttpResponse(src)
+@csrf_exempt
+def login_A(request):
+        if A.login():
+                return HttpResponse("success")
+
+@csrf_exempt
+def get_SN(request):
+        src = SN.get_src()
+        print(src)
+        return HttpResponse(src)
+@csrf_exempt
+def login_SN(request):
+        if SN.login():
+                return HttpResponse("success")
+
+@csrf_exempt
+def get_JD(request):
+        src = JD.get_src()
+        print(src)
+        return HttpResponse(src)
+@csrf_exempt
+def login_JD(request):
+        if JD.login():
+                return HttpResponse("success")

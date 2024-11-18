@@ -8,7 +8,7 @@ from time import sleep
 import re
 import json
 
-
+src = 0
 def search_good(goods):
     options = EdgeOptions()
     options.add_argument("--headless")
@@ -71,3 +71,45 @@ def search_good(goods):
         dic["link"] = "https:" + "".join(li.xpath("./a/@href"))
         goods_all.append(dic)
     return goods_all
+
+def login():
+    url = "https://passport.vip.com/login"
+    options = EdgeOptions()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-blink-features=ImagesEnabled")
+    options.add_argument("--disable-javascript")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    driver = webdriver.Edge(options=options)
+    driver.execute_cdp_cmd(
+        "Page.addScriptToEvaluateOnNewDocument",
+        {
+            "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
+        },
+    )
+    counter = 0
+    while counter<=3:
+        counter=counter+1
+        driver.get(url)
+        html = etree.HTML(driver.page_source)
+        sleep(0.5)
+        global src
+        src = html.xpath('//div[@class="c-qr-img-wrapper  J-qr-img-wrapper"]/img/@src')[0]
+        wait = WebDriverWait(driver, 60)
+        try:
+            wait.until(EC.title_is("唯品会-（原Vipshop.com）特卖会：品牌特卖_确保正品_确保低价"))
+        except Exception as e:
+            print("还未登录")
+        if driver.title != "唯品会网站登录":
+            cookies = driver.get_cookies()
+            with open("./web/cookies_A.json", "w") as file:
+                json.dump(cookies, file, indent=4)
+            src = 0
+            break
+    return True
+
+def get_src():
+    global src
+    while src ==0:
+        pass
+    return src

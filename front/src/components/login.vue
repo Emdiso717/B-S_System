@@ -25,7 +25,7 @@ export default {
         if (message.includes("success")) {
           ElMessage.success(message)
           this.$router.push({
-            name:"Main",
+            name:"A",
             query:{
               account:this.account
             }

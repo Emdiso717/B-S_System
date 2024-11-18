@@ -1,0 +1,208 @@
+[
+    {
+        "domain": ".jd.com",
+        "expiry": 1732781222,
+        "httpOnly": false,
+        "name": "ipLoc-djd",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "15-1213-0-0"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1732781222,
+        "httpOnly": false,
+        "name": "areaId",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "15"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1731919021,
+        "httpOnly": false,
+        "name": "__jdb",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "76161171.2.17319172154821490644494|1.1731917215"
+    },
+    {
+        "domain": ".jd.com",
+        "httpOnly": false,
+        "name": "__jdc",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "76161171"
+    },
+    {
+        "domain": ".jd.com",
+        "httpOnly": true,
+        "name": "pinId",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "UUR9g2ZvXKDPuKDSOttRgQ"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": true,
+        "name": "_tp",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "o%2FNsbf2IebJO4ZP7RnPbAA%3D%3D"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1763453222,
+        "httpOnly": true,
+        "name": "flash",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "3_NTFu-3STvgFvzKQDDXzGNJDNiIOi1-fZYZdNSkXQqRg2ElgsdgWJX4Uxj4c-qmnm6sev6H8yz6j0r_mPlGyzED2cUODP-6B8ehiMM7rXhIJIGCGxyEWFcorbgka5EWQBYPJfz-79cjvLjuOYWPXnygkXsF7QbhlGgBwHvEyR0k**"
+    },
+    {
+        "domain": ".jd.com",
+        "httpOnly": true,
+        "name": "thor",
+        "path": "/",
+        "sameSite": "None",
+        "secure": true,
+        "value": "43D6E0B863505C4946331FA9C7D6C763C44951BCCE4D41BF7C873A6243DA5A8840644885CBB4F2753A65ED02D7DFCF572829473CFB165B56E81F6A1F58A48D22A5BA25E3D025E31E197CDD42C55330F9B90F47F06BAA82B196AD44910280EB7271D0A4873BC1DF92E27040F4A13D3D7E0BACC59ECBAF3190096D6683E8D11FFF5CA671838598C6EF4D99477344C66D21857B1929D0176CEB2FC8558DC951ED38"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1731917335,
+        "httpOnly": false,
+        "name": "_gia_d",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "1"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": false,
+        "name": "npin",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "jd_PtcoPSnOALcb"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": false,
+        "name": "pin",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "jd_PtcoPSnOALcb"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1733213215,
+        "httpOnly": false,
+        "name": "__jdv",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "95931165|direct|-|none|-|1731917215483"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": false,
+        "name": "logintype",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "wx"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": false,
+        "name": "unick",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "jd_9918sbk1vrp366"
+    },
+    {
+        "domain": ".jd.com",
+        "httpOnly": false,
+        "name": "wlfstk_smdl",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "4w8c618dwphigoqcsf7g82ny35j5vp80"
+    },
+    {
+        "domain": "www.jd.com",
+        "expiry": 1763453222,
+        "httpOnly": false,
+        "name": "o2State",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "{%22webp%22:true%2C%22avif%22:true%2C%22lastvisit%22:1731917222414}"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1747469221,
+        "httpOnly": false,
+        "name": "__jda",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "76161171.17319172154821490644494.1731917215.1731917215.1731917215.1"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1734509221,
+        "httpOnly": true,
+        "name": "_pst",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "jd_PtcoPSnOALcb"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1757837216,
+        "httpOnly": false,
+        "name": "3AB9D23F7A4B3C9B",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "BZWMNSEONMENBV4V5YV7JZMGKOP4N6UJ5LEPNA6KESFUCZQU5KZNHEDFS4IXK73XS2QJQPC47QBP46UTYC3VNEWTQY"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1747469222,
+        "httpOnly": false,
+        "name": "__jdu",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "17319172154821490644494"
+    },
+    {
+        "domain": ".jd.com",
+        "expiry": 1763021215,
+        "httpOnly": false,
+        "name": "3AB9D23F7A4B3CSS",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "jdd03BZWMNSEONMENBV4V5YV7JZMGKOP4N6UJ5LEPNA6KESFUCZQU5KZNHEDFS4IXK73XS2QJQPC47QBP46UTYC3VNEWTQYAAAAMTHZHXMAYAAAAACYN667AMNWQN2AX"
+    }
+]
