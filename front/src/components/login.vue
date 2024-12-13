@@ -14,6 +14,10 @@ export default {
       new_email:''
     };
   },
+  created() {
+    this.account = this.$route.query.account;
+    console.log('Received account:', this.account);
+  },
   methods:{
     Login(){
       axios.post("/login",
@@ -148,7 +152,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#0b59cf, #a1dfe8);
+  background-image: url('./icons/low-poly-grid-haikei.svg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: cover;
 }
 .form_input{
   position: absolute;
@@ -164,7 +171,7 @@ export default {
 }
 .form{
   position: relative;
-  background-color: #74caf4;
+  background-color: rgba(255, 255, 255, 0.5);
   top:50%;
   left:50%;
   width: 480px;
@@ -181,7 +188,7 @@ export default {
   border: none;
   border-bottom: 2px solid #464646;
   width: 80%;
-  background: none;
+  background: none !important;
   padding: 5% 3% 1%;
   font-weight: 700;
   transition: .2s;

@@ -55,7 +55,7 @@ def get_src():
 
 def search_goods(goods):
     options = EdgeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=ImagesEnabled")
     options.add_argument("--disable-javascript")

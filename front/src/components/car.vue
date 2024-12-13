@@ -9,6 +9,7 @@ export default {
   components: { User, ShoppingCartFull, UserFilled, HomeFilled, Setting, Document},
   data(){
     return{
+      shouldShow: true,
       account:'',
       isCollapse:true,
       car:[],
@@ -25,8 +26,13 @@ export default {
   },
   mounted() {
     this.search_car();
+    this.checkWidth();
+    window.addEventListener('resize', this.checkWidth);
   },
   methods: {
+    checkWidth() {
+      this.shouldShow = window.innerWidth >= 500;
+    },
     open(good){
       this.price = true;
       this.yData=[];
@@ -100,6 +106,14 @@ export default {
         }
         this.search_car();
       })
+    },
+    backgroundClass(good){
+        if(good.from ==='京东')
+          return 'background_img1';
+        else if(good.from === '苏宁')
+          return 'background_img2';
+        else
+          return 'background_img3';
     }
   }
 }
@@ -110,7 +124,7 @@ export default {
     <el-header class="header">
       <p class="title">Price  Sleuth</p>
     </el-header>
-    <el-container>
+    <el-container v-if="shouldShow">
       <el-aside  class="aside">
         <el-menu
             default-active="2"
@@ -136,10 +150,7 @@ export default {
     <el-main class="main">
       <div  class="commodity" v-if="this.car.length > 0" >
         <div  class="JD" v-for="good in car">
-          <el-card class="good_card">
-            <div class="background">
-              <div class="shape" :style="{ backgroundColor: good.from==='京东'?'brown':good.from==='苏宁'?'#edd55c':'#e145df' }"></div>
-            </div>
+          <el-card class="good_card" :class="backgroundClass(good)">
             <div class="card_body">
               <img class="image" :src="good.img" :alt="good.id">
               <p class="card_font">{{good.title}}</p>
@@ -174,6 +185,28 @@ export default {
         <el-empty class="text1" description="购物车空空哦......" />
       </div>
     </el-main>
+    <el-container v-if="!shouldShow" class="bottom">
+      <el-menu
+          default-active="2"
+          class="el-menu-horizontal-demo"
+          :collapse="isCollapse"
+          mode="horizontal"
+          :router="true"
+      >
+        <el-menu-item  @click="changeRoute('/main')" index="1" class="icon">
+          <el-icon style="color: black"><HomeFilled /></el-icon>
+          <template #title>商品搜索</template>
+        </el-menu-item>
+        <el-menu-item @click="changeRoute('/car')" index="2" class="icon">
+          <el-icon style="color: black"><ShoppingCartFull /></el-icon>
+          <template #title>购物车</template>
+        </el-menu-item>
+        <el-menu-item @click="changeRoute('/user')" index="3" class="icon">
+          <el-icon style="color: black"><User /></el-icon>
+          <template #title>个人信息</template>
+        </el-menu-item>
+      </el-menu>
+    </el-container>
   </el-container>
 
 
@@ -247,6 +280,10 @@ export default {
   left: 4vw;
   width: 96%;
   height: 92%;
+  background-image: url("./icons/layered-peaks-haikei.svg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: cover;
 }
 .JD{
   width: 320px;
@@ -263,8 +300,22 @@ export default {
 .good_card{
   width: 100%;
   height: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.background_img1{
+  background-image:url('./icons/circle-scatter-haikei_JD.svg');
+  background-position: right bottom;
+}
+.background_img2{
+  background-image:url('./icons/circle-scatter-haikei_SN.svg');
+  background-position: right bottom;
+
+}
+.background_img3{
+  background-image:url('./icons/circle-scatter-haikei_A.svg');
+  background-position: right bottom;
+
 }
 .background{
   position: absolute;
@@ -276,7 +327,7 @@ export default {
   overflow: hidden;
 }
 .good_card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
 }
 .card_font{
@@ -355,6 +406,7 @@ export default {
   position: relative;
   z-index: 1;
   height:400px;
+  background-color: rgba(255, 255, 255, 0.41);
 }
 .center{
   display: flex;
@@ -425,9 +477,98 @@ export default {
   .main{
     position: absolute;
     top: 8vh;
-    left: 12vw;
-    width: 88%;
-    height:92%;
+    left: 0;
+    width: 100%;
+    height:84vh;
+  }
+  .bottom{
+    position: absolute;
+    top: 92vh;
+    left: 0;
+    height:7vh;
+    width: 100%;
+  }
+  .el-menu-horizontal-demo{
+    width: 100%;
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 100%;
+  }
+  .card_body{
+    height:260px;
+  }
+  .card_font{
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .image{
+    height: 150px;
+    width: 150px;
+    margin-left: 30px;
+    margin-top: 5px;
+  }
+  .card_price{
+    margin-top: 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f11c1c;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .card_footer{
+    width: 100% !important;
+    margin-top: -10px;
+    margin-left: 0;
+  }
+  .card_button {
+    background-color: #0b59cf;
+    width: 50px;
+    margin-left: -10px;
+    margin-right: 0;
+    border-radius: 8px;
+    border: 1px solid #0b59cf;
+    box-shadow: 0 2px 10px rgb(10, 64, 165,0.2);
+    transition: .2s;
+    color: #f5f7f8;
+  }
+  .card_text{
+    font-size: 12px;
+  }
+  .card_shop_font{
+    font-size: 8px;
+    font-weight: 400;
+  }
+  .JD{
+    width: 76%;
+    height: 350px;
+    margin-left: 12%;
+  }
+  .commodity{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-left: 0;
+  }
+  .icon{
+    margin-left: 13% !important;
+  }
+  .button_delete{
+    width: 85px !important;
+    background-color: #cf0b46 !important;
+    border: 2px solid #cf0b46 !important;
+    box-shadow: 0 4px 16px rgb(103, 10, 39) !important;
+    color: #f5f7f8!important;
+  }
+  .button_delete:hover {
+    background-color: #ffffff!important;
+    color: #cf1121 !important;
+    border-color: #cf0b46 !important;
+    box-shadow: 0 4px 16px rgb(103, 10, 39) !important;
   }
 }
 </style>

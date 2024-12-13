@@ -25,8 +25,11 @@ def search_good(goods):
     )
     url = "https://search.suning.com/%s/" % goods
     driver.get(url)
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    sleep(3)
+    for i in range(6):
+        distance = i * 800
+        js = "document.documentElement.scrollTop=%d" % distance
+        driver.execute_script(js)
+        sleep(0.8)
     html = etree.HTML(driver.page_source)
     li_list = html.xpath('//ul[@class="general clearfix"]/li')
     driver.quit()

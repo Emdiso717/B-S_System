@@ -6,6 +6,7 @@ import UserVue from  '@/components/user.vue'
 import AVue from '@/components/login_A.vue'
 import SNVue from '@/components/login_SN.vue'
 import JDVue from '@/components/login_JD.vue'
+import adminVue from '@/components/admin.vue'
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes:[
@@ -51,6 +52,12 @@ const router = createRouter({
             path:'/JD',
             name:'JD',
             component : JDVue,
+            props: true
+        },
+        {
+            path:'/admin',
+            name:'admin',
+            component : adminVue,
             props: true
         },
     ]

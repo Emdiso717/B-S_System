@@ -1,7 +1,7 @@
 <script >
 import {Document, HomeFilled, Setting, ShoppingCartFull, User, UserFilled} from "@element-plus/icons-vue";
 import axios from "axios";
-import {ElMessage} from "element-plus";
+import {ElNotification,ElMessage} from "element-plus";
 export default {
   components: {User, ShoppingCartFull, UserFilled, HomeFilled, Setting, Document},
   data(){
@@ -13,91 +13,16 @@ export default {
       isCollapse:true,
       search:'',
       filter:false,
-      JD_search_goods:[
-        {
-          'id': '100051402827',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/217481/20/44283/56385/670c87bbFdc05d85b/5e20e6ed30c3bf51.jpg',
-          'title': '小米（MI）Redmi 12C Helio G85 性能芯 5000万高清双摄 5000mAh长续航 4GB+128GB 暗影黑 智能手机小米红米',
-          'shop': ['小米京东自营旗舰店'],
-          'price': '499.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100051402827.html'
-        },
-        {
-          'id': '100044835937',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/131842/31/49178/64620/670c96ceF2d98a6eb/6c7e2e579c739495.jpg',
-          'title': '小米（MI）Redmi Note12 5G 手机 120Hz OLED屏幕  骁龙4移动平台 5000mAh 8GB+256GB 子夜黑',
-          'shop': ['小米京东自旗舰店'],
-          'price': '799.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100044835937.html'
-        },
-        {
-          'id': '10117949452022',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/134968/27/46549/84782/66f54b51Fdab98556/8c605d905e6cd399.jpg',
-          'title': '小米Redmi 红米Note14Pro ',
-          'shop': ['小米智选专卖店'],
-          'price': '1399.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 14',
-          'link': 'https://item.jd.com/10117949452022.html'
-        },
-        {
-          'id': '100044835937',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/131842/31/49178/64620/670c96ceF2d98a6eb/6c7e2e579c739495.jpg',
-          'title': '小米（MI）Redmi Note12 5G 手机 120Hz OLED屏幕  骁龙4移动平台 5000mAh 8GB+256GB 子夜黑',
-          'shop': ['小米京东自旗舰店'],
-          'price': '799.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100044835937.html'
-        },
-        {
-          'id': '100044835937',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/131842/31/49178/64620/670c96ceF2d98a6eb/6c7e2e579c739495.jpg',
-          'title': '小米（MI）Redmi Note12 5G 手机 120Hz OLED屏幕  骁龙4移动平台 5000mAh 8GB+256GB 子夜黑',
-          'shop': ['小米京东自旗舰店'],
-          'price': '799.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100044835937.html'
-        },
-        {
-          'id': '100044835937',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/131842/31/49178/64620/670c96ceF2d98a6eb/6c7e2e579c739495.jpg',
-          'title': '小米（MI）Redmi Note12 5G 手机 120Hz OLED屏幕  骁龙4移动平台 5000mAh 8GB+256GB 子夜黑',
-          'shop': ['小米京东自旗舰店'],
-          'price': '799.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100044835937.html'
-        },
-      ],
-      SN_search_goods:[
-          {
-          'id': '100044835937',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/131842/31/49178/64620/670c96ceF2d98a6eb/6c7e2e579c739495.jpg',
-          'title': '小米（MI）Redmi Note12 5G 手机 120Hz OLED屏幕  骁龙4移动平台 5000mAh 8GB+256GB 子夜黑',
-          'shop': ['小米京东自旗舰店'],
-          'price': '799.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 50万+',
-          'link': 'https://item.jd.com/100044835937.html'
-        }
-      ],
-      A_search_goods:[
-        {
-          'id': '10117949452022',
-          'img': 'https://img12.360buyimg.com/n7/jfs/t1/134968/27/46549/84782/66f54b51Fdab98556/8c605d905e6cd399.jpg',
-          'title': '小米Redmi 红米Note14Pro ',
-          'shop': ['小米智选专卖店'],
-          'price': '1399.00',
-          'sales': '\n\t\t\t\t\t\t\t\t 14',
-          'link': 'https://item.jd.com/10117949452022.html'
-        }
-      ],
+      JD_search_goods:[],
+      SN_search_goods:[],
+      A_search_goods:[],
       fork_JD_good:{},
       fork_SN_good:{},
       fork_A_good:{},
       acc:true,
       filter_search:'',
       open_compare:false,
-      shouldShow: true
+      shouldShow: true,
     }
 
   },
@@ -240,6 +165,23 @@ export default {
 
     this.acc=!this.acc
     },
+    down(){
+      axios.post("/down",
+          {
+            account:this.account,
+          }).then(response => {
+        let message = response.data
+        message.forEach((obj) => {
+          ElNotification({
+            title: '降价提醒',
+            dangerouslyUseHTMLString: true,
+            message : `<div><span style="font-family: 'Montserrat', sans-serif;color: #000000;font-size: 11px;font-style: italic;font-weight: 600;">您从${obj.from}关注的商品:<br>${obj.title}<br>从</span><span style="font-family: 'Montserrat', sans-serif;color: #2f92e8;font-size: 11px;font-style: italic;font-weight: 600;">  ${obj.pre_price}  </span><span style="font-family: 'Montserrat', sans-serif;color: #000000;font-size: 12px;font-style: italic;font-weight: 600;">降价到了</span><span style="font-family: 'Montserrat', sans-serif;color: #f10404;font-size: 12px;font-style: italic;font-weight: 600;">  ${obj.rec_price}   </span><span style="font-family: 'Montserrat', sans-serif;color: #000000;font-size: 11px;font-style: italic;font-weight: 600;">!快去看看吧！！！</span></div>`,
+            type: 'success',
+            offset: 10,
+          });
+        });
+      })
+    }
   },
   computed:{
     JD_search_goods() {
@@ -264,6 +206,7 @@ export default {
   mounted() {
     this.checkWidth();
     window.addEventListener('resize', this.checkWidth);
+    this.down()
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkWidth);
@@ -276,8 +219,8 @@ export default {
       <el-header class="header">
         <p class="title">Price  Sleuth</p>
       </el-header>
-      <el-container>
-      <el-aside  class="aside">
+      <el-container v-if="shouldShow">
+      <el-aside  class="aside" >
         <el-menu
             default-active="1"
             class="el-menu-vertical-demo"
@@ -321,13 +264,13 @@ export default {
               class="el-menu-demo"
               mode="horizontal"
           >
-            <el-menu-item  @click="model=1" index="1" class="icon">
+            <el-menu-item  @click="model=1" index="1" class="icon1">
               <p class="text">京东</p>
             </el-menu-item>
-            <el-menu-item @click="model=2" index="2" class="icon">
+            <el-menu-item @click="model=2" index="2" class="icon1">
               <p class="text">苏宁</p>
             </el-menu-item>
-            <el-menu-item @click="model=3" index="3" class="icon">
+            <el-menu-item @click="model=3" index="3" class="icon1">
               <p class="text">唯品会</p>
             </el-menu-item>
           </el-menu>
@@ -388,7 +331,7 @@ export default {
       </el-container>
       <el-main :class="mainClass" v-loading.body.lock="load">
         <div v-if="model===1" class="commodity">
-            <div  class="JD" v-for="good in JD_search_goods">
+            <div v-if="JD_search_goods.length>0" class="JD" v-for="good in JD_search_goods">
               <el-card class="good_card">
                 <div class="card_body">
                   <img class="image" :src="good.img" :alt="good.id">
@@ -411,9 +354,12 @@ export default {
                 </template>
               </el-card>
             </div>
+            <div v-else class="center">
+              <el-empty class="text1" description="搜索界面空空......" />
+            </div>
         </div>
         <div v-if="model===2" class="commodity">
-          <div  class="JD" v-for="good in SN_search_goods">
+          <div  v-if="SN_search_goods.length>0" class="JD" v-for="good in SN_search_goods">
             <el-card class="good_card">
               <div class="card_body">
                 <img class="image" :src="good.img" :alt="good.id">
@@ -436,9 +382,12 @@ export default {
               </template>
             </el-card>
           </div>
+          <div v-else class="center">
+            <el-empty class="text1" description="搜索界面空空......" />
+          </div>
         </div>
         <div v-if="model===3" class="commodity">
-          <div  class="JD" v-for="good in A_search_goods">
+          <div  v-if="A_search_goods.length>0" class="JD" v-for="good in A_search_goods">
             <el-card class="good_card">
               <div class="card_body">
                 <img class="image" :src="good.img" :alt="good.id">
@@ -461,18 +410,43 @@ export default {
               </template>
             </el-card>
           </div>
+          <div v-else class="center">
+            <el-empty  class="text1" description="搜索界面空空......" />
+          </div>
         </div>
       </el-main>
+      <el-container v-if="!shouldShow" class="bottom">
+        <el-menu
+            default-active="1"
+            class="el-menu-horizontal-demo"
+            :collapse="isCollapse"
+            mode="horizontal"
+            :router="true"
+        >
+          <el-menu-item  @click="changeRoute('/main')" index="1" class="icon">
+            <el-icon style="color: black"><HomeFilled /></el-icon>
+            <template #title>商品搜索</template>
+          </el-menu-item>
+          <el-menu-item @click="changeRoute('/car')" index="2" class="icon">
+            <el-icon style="color: black"><ShoppingCartFull /></el-icon>
+            <template #title>购物车</template>
+          </el-menu-item>
+          <el-menu-item @click="changeRoute('/user')" index="3" class="icon">
+            <el-icon style="color: black"><User /></el-icon>
+            <template #title>个人信息</template>
+          </el-menu-item>
+        </el-menu>
+      </el-container>
     </el-container>
 
   <el-dialog
       v-model="open_compare"
-      width="70%"
+      :style="{ width: shouldShow ? '70%' : '100%' }"
   >
     <template #header>
       <span class="dia_font">详细比价</span>
     </template>
-    <div class="dialog_body">
+    <div class="dialog_body" v-if="shouldShow">
       <div  class="JD" >
         <el-card class="good_card">
           <div v-if="Object.keys(fork_JD_good).length > 0" >
@@ -550,6 +524,47 @@ export default {
         </el-card>
       </div>
     </div>
+    <div class="Compare" v-else>
+      <div v-if="Object.keys(fork_JD_good).length > 0" class="compare">
+        <p class="card_font">{{fork_JD_good.title}}</p>
+        <p class="card_price">￥{{fork_JD_good.price}}</p>
+        <el-button class="button filter_button" @click="fork_JD_good={}">
+          <span class="text filter_text">清除</span>
+          <span class="text filter_text" style="color: brown">京东</span>
+        </el-button>
+      </div>
+      <div v-else-if="Object.keys(fork_JD_good).length === 0" class="compare">
+        <p class="no_goods">请添加</p>
+        <span class="no_goods" style="color: brown">京东</span>
+        <p class="no_goods">商品</p>
+      </div>
+      <div v-if="Object.keys(fork_SN_good).length > 0" class="compare">
+        <p class="card_font">{{fork_SN_good.title}}</p>
+        <p class="card_price">￥{{fork_SN_good.price}}</p>
+        <el-button class="button filter_button" @click="fork_SN_good={}">
+          <span class="text filter_text">清除</span>
+          <span class="text filter_text" style="color: #edd55c">苏宁</span>
+        </el-button>
+      </div>
+      <div v-else-if="Object.keys(fork_SN_good).length === 0" class="compare">
+        <p class="no_goods">请添加</p>
+        <span class="no_goods" style="color: #edd55c">苏宁</span>
+        <p class="no_goods">商品</p>
+      </div>
+      <div v-if="Object.keys(fork_A_good).length > 0" class="compare">
+        <p class="card_font">{{fork_A_good.title}}</p>
+        <p class="card_price">￥{{fork_A_good.price}}</p>
+        <el-button class="button filter_button" @click="fork_A_good={}">
+          <span class="text filter_text">清除</span>
+          <span class="text filter_text" style="color: #e145df">唯品会</span>
+        </el-button>
+      </div>
+      <div v-else-if="Object.keys(fork_A_good).length === 0" class="compare">
+        <p class="no_goods">请添加</p>
+        <span class="no_goods" style="color: #e145df">唯品会</span>
+        <p class="no_goods">商品</p>
+      </div>
+    </div >
     <template #footer>
       <el-button class="button dia_button" @click="open_compare = false">
         <span class="text">关闭</span>
@@ -560,6 +575,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
+.center{
+  margin-left: 600px;
+}
 .all{
   position: absolute;
   top: 0;
@@ -619,6 +637,10 @@ export default {
   left: 4vw;
   width: 96%;
   height: 72%;
+  background-image: url("./icons/layered-waves-haikei.svg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: cover;
 }
 .new-top {
   top: 48vh !important;
@@ -678,6 +700,7 @@ export default {
   height: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-image: url("./icons/polygon-scatter-haikei.svg");
 }
 .good_card:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -686,7 +709,6 @@ export default {
 .header2{
   position: absolute;
   top: 8vh;
-  left: 4vw;
   width: 96%;
   height: 18%;
 }
@@ -707,6 +729,7 @@ export default {
 }
 .card_body{
   height:400px;
+  background-color: rgba(255, 255, 255, 0.41);
 }
 .card_font{
   font-family: 'Montserrat', sans-serif;
@@ -844,19 +867,15 @@ export default {
   font-size: 20px !important;
 }
 @media (max-width: 500px) {
-  .aside{
-    position: absolute;
-    top: 8vh;
-    left: 0;
-    height:92vh;
-    width: 12vw;
+  .center{
+    margin-left: 80px;
   }
   .main{
     position: absolute;
-    top: 26vh;
-    left: 12vw;
-    width: 88%;
-    height:76%;
+    top: 24vh;
+    left: 0;
+    width: 100%;
+    height:68vh;
   }
   .new-top {
     position: absolute;
@@ -864,6 +883,22 @@ export default {
     left: 12vw !important;
     width: 88% !important;
     height:85% !important;
+  }
+  .bottom{
+    position: absolute;
+    top: 92vh;
+    left: 0;
+    height:7vh;
+    width: 100%;
+  }
+  .el-menu-horizontal-demo{
+    width: 100%;
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 100%;
+  }
+  .icon{
+    margin-left: 13% !important;
   }
   .search-box{
     position: absolute;
@@ -915,9 +950,9 @@ export default {
     text-transform: uppercase;
   }
   .JD{
-    width: 250px;
+    width: 74%;
     height: 350px;
-    margin-left: 20px;
+    margin-left: 13%;
   }
   .commodity{
      display: flex;
@@ -932,7 +967,7 @@ export default {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   .good_card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
   }
   .card_body{
@@ -949,7 +984,7 @@ export default {
   .image{
     height: 150px;
     width: 150px;
-    margin-left: 20px;
+    margin-left: 30px;
     margin-top: 5px;
   }
   .card_price{
@@ -979,16 +1014,6 @@ export default {
     transition: .2s;
     color: #f5f7f8;
   }
-  .card_button:active,
-  .card_button:focus,
-  .card_button:hover {
-    background-color: #ffffff;
-    transition: box-shadow 0.3s ease;
-    color: #2f4a78;
-    border-color: #2861bf;
-    box-shadow: 0 4px 16px rgba(40, 97, 191, 0.6);
-    border-width: 3px;
-  }
   .card_text{
     font-size: 13px;
   }
@@ -1000,13 +1025,31 @@ export default {
     font-weight: 400;
   }
   .el-menu-demo{
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     height: 8vh;
     width: 300px;
+  }
+  .icon1{
+    margin-left: 0;
+  }
+  .Compare{
+    width: 100%;
+    height: 380px;
+  }
+  .compare{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 3px;
+    height: 120px;
+    border: 2px solid #000;
+    font-size: 11px !important;
   }
 }
 </style>
