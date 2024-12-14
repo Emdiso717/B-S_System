@@ -73,6 +73,8 @@ def search_good(goods):
     return goods_all
 
 def login():
+    global  src
+    src=0
     url = "https://passport.vip.com/login"
     options = EdgeOptions()
     options.add_argument("--headless")
@@ -87,26 +89,21 @@ def login():
             "source": """Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"""
         },
     )
-    counter = 0
-    while counter<=3:
-        counter=counter+1
-        driver.get(url)
-        html = etree.HTML(driver.page_source)
-        sleep(0.5)
-        global src
-        src = html.xpath('//div[@class="c-qr-img-wrapper  J-qr-img-wrapper"]/img/@src')[0]
-        wait = WebDriverWait(driver, 60)
-        try:
-            wait.until(EC.title_is("唯品会-（原Vipshop.com）特卖会：品牌特卖_确保正品_确保低价"))
-        except Exception as e:
-            print("还未登录")
-        if driver.title != "唯品会网站登录":
-            cookies = driver.get_cookies()
-            with open("./web/cookies_A.json", "w") as file:
-                json.dump(cookies, file, indent=4)
-            src = 0
-            break
-    return True
+    driver.get(url)
+    html = etree.HTML(driver.page_source)
+    sleep(0.5)
+    src = html.xpath('//div[@class="c-qr-img-wrapper  J-qr-img-wrapper"]/img/@src')[0]
+    wait = WebDriverWait(driver, 60)
+    try:
+        wait.until(EC.url_to_be("https://www.vip.com/"))
+    except Exception as e:
+        print("还未登录")
+    if driver.title != "唯品会网站登录":
+        cookies = driver.get_cookies()
+        with open("./web/cookies_A.json", "w") as file:
+            json.dump(cookies, file, indent=4)
+        src = 0
+        return True
 
 def get_src():
     global src

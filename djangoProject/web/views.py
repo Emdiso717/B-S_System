@@ -19,6 +19,11 @@ from  .models import Car
 import web.SN_spider as SN
 import web.A_spider as A
 import re
+import jwt
+from datetime import datetime, timedelta
+from django.conf import settings
+from django.http import JsonResponse
+
 
 @csrf_exempt
 def login(request):
@@ -29,7 +34,12 @@ def login(request):
         password = data.get('password')
         user = authenticate(username=account,password=password)
         if user is not None:
-                return HttpResponse("success")
+                payload = {
+                        'account':account ,
+                        'exp': datetime.utcnow() + timedelta(minutes=30)
+                }
+                token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+                return JsonResponse({'token': token})
         else:
                 return HttpResponse("用户名或密码错误")
 

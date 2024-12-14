@@ -9,6 +9,8 @@ import json
 
 src = 0
 def login():
+    global src
+    src = 0
     url = "https://passport.jd.com/new/login.aspx"
     options = EdgeOptions()
     options.add_argument("--headless")
@@ -33,7 +35,6 @@ def login():
         print("还未跳转")
     html = etree.HTML(driver.page_source)
     sleep(0.5)
-    global src
     src = "https://open.weixin.qq.com"+html.xpath('//div[@class="web_qrcode_img_wrp"]/img/@src')[0]
     try:
         wait.until(EC.title_is("京东(JD.COM)-正品低价、品质保障、配送及时、轻松购物！"))
@@ -55,7 +56,7 @@ def get_src():
 
 def search_goods(goods):
     options = EdgeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=ImagesEnabled")
     options.add_argument("--disable-javascript")

@@ -210,7 +210,21 @@ export default {
   </el-container>
 
 
-  <el-dialog v-model="price" width="50%">
+  <el-dialog v-if="shouldShow" v-model="price" width="50%">
+    <template #header>
+      <span class="dia_font">详细比价</span>
+    </template>
+    <div class="dialog_body" >
+      <div id="chart" :style="myChartStyle"></div>
+    </div>
+    <template #footer>
+      <el-button class="dia_button" @click="price=false">
+        <span class="text">关闭</span>
+      </el-button>
+    </template>
+  </el-dialog>
+
+  <el-dialog v-if="!shouldShow" v-model="price" width="90%">
     <template #header>
       <span class="dia_font">详细比价</span>
     </template>

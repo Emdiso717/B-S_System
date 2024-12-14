@@ -12,7 +12,7 @@ export default {
   },
   mounted() {
     this.login();
-    this.startPolling()
+    this.sendGetRequest();
   },
   methods:{
     skip(){
@@ -22,9 +22,6 @@ export default {
         query:currentRoute.query
       })
     },
-    stop(){
-      axios.post("/delete_A")
-    },
     sendGetRequest() {
       axios.get('/get_A')
           .then(response => {
@@ -32,9 +29,6 @@ export default {
             console.log(this.src)
             this.load=false
           })
-    },
-    startPolling() {
-      this.intervalId = setInterval(this.sendGetRequest, 10000);
     },
     login(){
       axios.get("/login_A").then(response => {
@@ -55,26 +49,6 @@ export default {
       })
     }
   },
-  beforeDestroy() {
-    if (this.intervalId) {
-      stop()
-      clearInterval(this.intervalId);
-
-    }
-  },
-  deactivated() {
-    if (this.intervalId) {
-      stop()
-      clearInterval(this.intervalId);
-    }
-  },
-  beforeRouteLeave(to, from, next) {
-    if (this.intervalId) {
-      stop()
-      clearInterval(this.intervalId);
-    }
-    next();
-  }
 }
 </script>
 

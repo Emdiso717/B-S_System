@@ -6,6 +6,7 @@ export default {
   components: {User, ShoppingCartFull, UserFilled, HomeFilled, Setting, Document},
   data(){
     return{
+      shouldShow: true,
       account:'',
       isCollapse:true,
       user:{
@@ -58,6 +59,10 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.checkWidth();
+    window.addEventListener('resize', this.checkWidth);
+  },
   created() {
     this.account = this.$route.query.account;
     console.log('Received account:', this.account);
@@ -65,6 +70,9 @@ export default {
     this.down();
   },
   methods: {
+    checkWidth() {
+      this.shouldShow = window.innerWidth >= 500;
+    },
     get_em(){
       axios.post("/get_account",
           {
@@ -89,6 +97,7 @@ export default {
       })
     },
     quit(){
+      localStorage.removeItem(`authToken_${this.account}`);
       this.$router.push({
         path: '/login',
       });
@@ -102,10 +111,10 @@ export default {
     <el-header class="header">
       <p class="title">Price  Sleuth</p>
     </el-header>
-    <el-container>
+    <el-container v-if="shouldShow">
       <el-aside  class="aside">
         <el-menu
-            default-active="2"
+            default-active="3"
             class="el-menu-vertical-demo"
             :collapse="isCollapse"
             :router="true"
@@ -170,13 +179,35 @@ export default {
             </el-alert>
           </div>
           </el-scrollbar>
-          <p class="text">注册时间：{{user.date_joined}}</p>
+          <p class="text mat">注册时间：{{user.date_joined}}</p>
           <el-button  class="card_button" @click="quit()">
             <span class="text_button">退出登录</span>
           </el-button>
         </div>
       </div>
     </el-main>
+    <el-container v-if="!shouldShow" class="bottom">
+      <el-menu
+          default-active="3"
+          class="el-menu-horizontal-demo"
+          :collapse="isCollapse"
+          mode="horizontal"
+          :router="true"
+      >
+        <el-menu-item  @click="changeRoute('/main')" index="1" class="icon">
+          <el-icon style="color: black"><HomeFilled /></el-icon>
+          <template #title>商品搜索</template>
+        </el-menu-item>
+        <el-menu-item @click="changeRoute('/car')" index="2" class="icon">
+          <el-icon style="color: black"><ShoppingCartFull /></el-icon>
+          <template #title>购物车</template>
+        </el-menu-item>
+        <el-menu-item @click="changeRoute('/user')" index="3" class="icon">
+          <el-icon style="color: black"><User /></el-icon>
+          <template #title>个人信息</template>
+        </el-menu-item>
+      </el-menu>
+    </el-container>
   </el-container>
 </template>
 
@@ -348,15 +379,19 @@ export default {
   .main{
     position: absolute;
     top: 8vh;
-    left: 12vw;
-    width: 88%;
-    height:92%;
+    left: 0;
+    width: 100%;
+    height:84vh;
   }
   .card{
-    margin-left: 2%;
-    width: 96%;
+    position:relative;
+    margin-left: 2.5%;
+    width: 95%;
     height: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
   }
   .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -369,6 +404,90 @@ export default {
     right: 0;
     z-index: 0;
     transform: scaleY(-1);
+  }
+  .bottom{
+    position: absolute;
+    top: 92vh;
+    left: 0;
+    height:7vh;
+    width: 100%;
+  }
+  .el-menu-horizontal-demo{
+    width: 100%;
+    margin-left: 3%;
+    margin-right: 3%;
+    height: 100%;
+  }
+  .icon{
+    margin-left: 13% !important;
+  }
+  .avatar{
+    margin-left: 15px;
+    margin-top: 15px;
+    height: 60px;
+    width: auto;
+  }
+  .form_font{
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 1px;
+    width: 73%;
+  }
+  .po1{
+    position: relative;
+    top:-60px;
+    left: 85px;
+  }
+  .po2{
+    margin-top: 10px;
+  }
+  .down{
+    position: relative;
+    top:-80px;
+    width: 90%;
+    margin-left: 5%;
+    height: 60%;
+  }
+  .text{
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .mat{
+    margin-top: 10px;
+  }
+  .card_button {
+    background-color: #0b59cf;
+    width: 60px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #0b59cf;
+    box-shadow: 0 2px 10px rgb(10, 64, 165,0.2);
+    transition: .2s;
+    color: #f5f7f8;
+    margin-left: 220px;
+  }
+  .text_button{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .font{
+    font-family: 'Montserrat', sans-serif;
+    color: #0b59cf;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
   }
 }
 </style>

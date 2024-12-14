@@ -1,17 +1,7 @@
 [
     {
         "domain": ".suning.com",
-        "expiry": 1763566262,
-        "httpOnly": false,
-        "name": "cityCode",
-        "path": "/",
-        "sameSite": "Lax",
-        "secure": false,
-        "value": "571"
-    },
-    {
-        "domain": ".suning.com",
-        "expiry": 1763566262,
+        "expiry": 1765696278,
         "httpOnly": false,
         "name": "cityId",
         "path": "/",
@@ -21,7 +11,17 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1763566262,
+        "expiry": 1765696279,
+        "httpOnly": false,
+        "name": "cityCode",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "571"
+    },
+    {
+        "domain": ".suning.com",
+        "expiry": 1765696278,
         "httpOnly": false,
         "name": "SN_CITY",
         "path": "/",
@@ -36,7 +36,7 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "173203024801694432%7C1732030262365%7C1732030262351%7C2"
+        "value": "173416026872433474%7C1734160278956%7C1734160278946%7C2"
     },
     {
         "domain": "www.suning.com",
@@ -45,17 +45,17 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "a1ad4ecc-118d-4d85-abfa-503bd3b3af1c"
+        "value": "13b89561-0d11-47e0-8d18-487d6539dcef"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1766590247,
+        "expiry": 1768720268,
         "httpOnly": false,
         "name": "hm_guid",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "009f12d8-9943-42ab-a197-cb15b917d241"
+        "value": "035966b6-5bf7-43d6-9aac-ab04823302cf"
     },
     {
         "domain": ".suning.com",
@@ -68,17 +68,17 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1763566247,
+        "expiry": 1765696267,
         "httpOnly": false,
         "name": "_device_session_id",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "p_30a4d651-f1be-44cd-9944-808cf1756738"
+        "value": "p_ef3f3f8d-b437-47b1-9f12-fdffda3654a1"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1732038061,
+        "expiry": 1734168078,
         "httpOnly": false,
         "name": "nick2",
         "path": "/",
@@ -93,11 +93,11 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "f194bc10-e2d4-43c7-805d-f31b0bd7b71b"
+        "value": "6c0222f6-f25c-4658-add5-f81d297f5ab6"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1733758261,
+        "expiry": 1735888278,
         "httpOnly": false,
         "name": "custno",
         "path": "/",
@@ -112,7 +112,7 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "173203026199580418"
+        "value": "173416027857212398"
     },
     {
         "domain": ".suning.com",
@@ -130,11 +130,11 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": true,
-        "value": "3A054228FB9B17FAB5134599AAA19F01"
+        "value": "8A71D99DB0AF51C0FF4E503D61B877A7"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1763595062,
+        "expiry": 1765725079,
         "httpOnly": false,
         "name": "streetCode",
         "path": "/",
@@ -144,27 +144,27 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1766590262,
+        "expiry": 1768720279,
         "httpOnly": false,
         "name": "_snvd",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "1732030249741BhzEih2YroF"
+        "value": "1734160286328rLPZnYEy+h0"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1766590262,
+        "expiry": 1768720278,
         "httpOnly": false,
         "name": "_snma",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "1%7C173203024751815329%7C1732030247517%7C1732030248011%7C1732030262339%7C2%7C1"
+        "value": "1%7C173416026808316193%7C1734160268083%7C1734160268717%7C1734160278944%7C2%7C1"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1733758261,
+        "expiry": 1735888278,
         "httpOnly": false,
         "name": "sncnstr",
         "path": "/",
@@ -174,7 +174,7 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1763566262,
+        "expiry": 1765696278,
         "httpOnly": false,
         "name": "districtId",
         "path": "/",
@@ -184,7 +184,7 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1757950261,
+        "expiry": 1760080278,
         "httpOnly": true,
         "name": "tradeMA",
         "path": "/",
@@ -194,61 +194,23 @@
     },
     {
         "domain": ".suning.com",
-        "expiry": 1732073448,
+        "expiry": 1734203469,
         "httpOnly": false,
         "name": "_snzwt",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "THMRJP193450c3547m6p9c52b"
+        "value": "THHyZI193c401bedbhqPTf288"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1733758261,
+        "expiry": 1735888278,
         "httpOnly": false,
         "name": "idsLoginUserIdLastTime",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
         "value": ""
-    },
-    {
-        "domain": ".suning.com",
-        "httpOnly": false,
-        "name": "ecologyLevel",
-        "path": "/",
-        "sameSite": "Lax",
-        "secure": false,
-        "value": "ML100100"
-    },
-    {
-        "domain": ".suning.com",
-        "expiry": 1732116648,
-        "httpOnly": false,
-        "name": "_snsr",
-        "path": "/",
-        "sameSite": "Lax",
-        "secure": false,
-        "value": "direct%7Cdirect%7C%7C%7C"
-    },
-    {
-        "domain": ".suning.com",
-        "httpOnly": true,
-        "name": "ssotbrd",
-        "path": "/",
-        "sameSite": "Lax",
-        "secure": false,
-        "value": "TGTaHLMvb7UFz7Vgg4ItTZFfdvdhjH6bMtStTEvl0W0"
-    },
-    {
-        "domain": ".suning.com",
-        "expiry": 1732032062,
-        "httpOnly": false,
-        "name": "_snmc",
-        "path": "/",
-        "sameSite": "Lax",
-        "secure": false,
-        "value": "1"
     },
     {
         "domain": ".suning.com",
@@ -266,17 +228,17 @@
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "siCoDt0uFzUxoAV1JEpDG2m0iocQoBKIG0"
+        "value": "siG0F1VzW1KIhlxi5NvaUuX7kxrM2BoB8Y"
     },
     {
         "domain": ".suning.com",
-        "expiry": 1763566262,
+        "expiry": 1765696279,
         "httpOnly": false,
         "name": "_df_ud",
         "path": "/",
         "sameSite": "Lax",
         "secure": false,
-        "value": "cc161705-9693-49ed-bc3e-b0232deaa8d2"
+        "value": "4de60c93-f658-472c-943b-8acc212d2b09"
     },
     {
         "domain": ".suning.com",
@@ -286,5 +248,43 @@
         "sameSite": "Lax",
         "secure": false,
         "value": "0"
+    },
+    {
+        "domain": ".suning.com",
+        "httpOnly": false,
+        "name": "ecologyLevel",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "ML100100"
+    },
+    {
+        "domain": ".suning.com",
+        "expiry": 1734246668,
+        "httpOnly": false,
+        "name": "_snsr",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "direct%7Cdirect%7C%7C%7C"
+    },
+    {
+        "domain": ".suning.com",
+        "httpOnly": true,
+        "name": "ssotbrd",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "TGTTtQebMzqfd4GVy2BNVlygeTsG1CpxkDttV0v3E6R"
+    },
+    {
+        "domain": ".suning.com",
+        "expiry": 1734162078,
+        "httpOnly": false,
+        "name": "_snmc",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "1"
     }
 ]

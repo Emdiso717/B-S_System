@@ -69,6 +69,8 @@ def search_good(goods):
     return good_all
 
 def login():
+    global  src
+    src=0
     url = "https://passport.suning.com/ids/login"
     options = EdgeOptions()
     options.add_argument("--headless")
@@ -93,7 +95,6 @@ def login():
         print("还未跳转")
     html = etree.HTML(driver.page_source)
     sleep(0.5)
-    global src
     src = "https://open.weixin.qq.com"+html.xpath('//div[@class="web_qrcode_img_wrp"]/img/@src')[0]
     try:
         wait.until(EC.title_is("苏宁易购(Suning.com)-换新到苏宁 省钱更省心！"))

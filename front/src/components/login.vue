@@ -25,9 +25,11 @@ export default {
             account:this.account,
             password:this.password
           }).then(response => {
-        let message = response.data
-        if (message.includes("success")) {
-          ElMessage.success(message)
+        const token = response.data.token;
+        console.log('token：', token);
+        if (token) {
+          ElMessage.success("登录成功")
+          localStorage.setItem(`authToken_${this.account}`, token);
           this.$router.push({
             name:"A",
             query:{
@@ -35,10 +37,10 @@ export default {
             }
           })
         } else {
-          ElMessage.error(message)
+          ElMessage.error(response.data)
         }
       })
-      console.log('用户输入的内容是：', this.account,this.password);
+
     },
     register(){
       let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
