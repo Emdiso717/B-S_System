@@ -1,4 +1,7 @@
 from django.urls import path
+from pkg_resources.extern import names
+
+from .check_price import check_price
 from .views import login
 from .views import register
 from .views import searchJD
@@ -16,6 +19,8 @@ from .views import login_JD
 from .views import get_price
 from .views import down
 from .views import get_account
+from .views import send_email
+
 urlpatterns = [
     path('login/register',register,name='register'),
     path('login',login,name='login'),
@@ -36,5 +41,6 @@ urlpatterns = [
     path('get_JD', get_JD, name='get_JD'),
     path('new_price',get_price,name='get_price'),
     path('down',down,name='down'),
-    path('get_account',get_account,name='get_account')
+    path('get_account',get_account,name='get_account'),
+    path('send',send_email,name='send_email')
 ]

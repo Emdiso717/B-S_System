@@ -14,6 +14,8 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 import web.JD_spider as JD
+from .check_price import check_price
+from .check_price import send_emails
 from .models import Goods
 from  .models import Car
 import web.SN_spider as SN
@@ -280,7 +282,7 @@ def down(request):
                 pre_price = re.search(r"(\d+(\.\d{2})?)", pre_price).group(1)
                 rec_price = float(rec_price)
                 pre_price = float(pre_price)
-                if rec_price < pre_price:
+                if rec_price < pre_price and rec_price!=0:
                         if good.good_from == 'JD':
                                 goods['from'] = '京东'
                         elif good.good_from == 'SN':
@@ -310,5 +312,10 @@ def get_account(request):
     return JsonResponse(information, safe=False)
 @csrf_exempt
 def get_price(request):
-        # TODO
-        return HttpResponse("success")
+        check_price()
+        return HttpResponse("价格检查完成")
+
+@csrf_exempt
+def send_email(request):
+        send_emails()
+        return HttpResponse("发送降价提醒完成")

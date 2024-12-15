@@ -130,3 +130,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+# 发送邮件的邮箱服务器
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# 发件人邮箱
+EMAIL_HOST_USER = '3220105929@zju.edu.cn'
+
+# 发件人邮箱密码
+EMAIL_HOST_PASSWORD = 'FDuCkcc2cjZ7U6Uy'
+
+# SMTP 服务器
+EMAIL_HOST = 'smtp.zju.edu.cn'
+
+# SMTP 服务器端口
+EMAIL_PORT = 25  # 或者使用 465（SSL）
+
+# 使用 TLS
+EMAIL_USE_TLS = False  # 或者使用 EMAIL_USE_SSL = True 来使用 SSL

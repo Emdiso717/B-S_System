@@ -112,4 +112,6 @@ def get_src():
     global src
     while src ==0:
         pass
-    return src
+    re_src =src
+    sec =0
+    return re_src

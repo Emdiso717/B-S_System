@@ -16,46 +16,10 @@ export default {
       downs:[
         {
           form:'京东',
-          title:'111111111111111111111',
+          title:'1',
           pre_price:1000,
           rec_price:100,
         },
-        {
-          form:'京东',
-          title:'111111111111111111111',
-          pre_price:1000,
-          rec_price:100,
-        },
-        {
-          form:'京东',
-          title:'111111111111111111111',
-          pre_price:1000,
-          rec_price:100,
-        },
-        {
-          form:'京东',
-          title:'111111111111111111111',
-          pre_price:1000,
-          rec_price:100,
-        },
-        {
-          form:'京东',
-          title:'111111111111111111111',
-          pre_price:1000,
-          rec_price:100,
-        },
-        {
-          form:'京东',
-          title:'33333',
-          pre_price:1000,
-          rec_price:700,
-        },
-        {
-          form:'京东',
-          title:'22222222222',
-          pre_price:1000,
-          rec_price:980,
-        }
       ]
     }
   },
@@ -146,8 +110,8 @@ export default {
         <el-divider class="divider" />
         <div class="down" >
           <el-scrollbar >
-          <div class="down2" v-for="obj in downs" >
-            <el-alert v-if="(obj.rec_price/obj.pre_price) <= 0.6" type="success">
+          <div class="down2" v-loading.body.lock="downs[0].title==='1'" v-for="obj in downs" >
+            <el-alert v-if="(obj.rec_price/obj.pre_price) <= 0.6 && obj.rec_price!==0" type="success">
               <div>
                 <p class="text" style="color: #199c2d; font-size: 15px">大减价！！</p>
                 <span class="text">您从{{obj.from}}关注的商品:<br>{{obj.title}}<br> 从 ￥</span>
@@ -157,7 +121,7 @@ export default {
                 <span class="text"> !快去看看吧！！！</span>
               </div>
             </el-alert>
-            <el-alert v-else-if="(obj.rec_price/obj.pre_price) <= 0.9" type="warning">
+            <el-alert v-else-if="(obj.rec_price/obj.pre_price) <= 0.9 && obj.rec_price!==0" type="warning">
               <div>
                 <p class="text" style="color: #ff9100; font-size: 15px">价格优惠！！</p>
                 <span class="text">您从{{obj.from}}关注的商品:<br>{{obj.title}}<br> 从 ￥</span>
@@ -167,7 +131,7 @@ export default {
                 <span class="text"> !快去看看吧！！！</span>
               </div>
             </el-alert>
-            <el-alert v-else type="info">
+            <el-alert v-else-if="obj.rec_price!==0" type="info">
               <div>
                 <p class="text" style="color: gray; font-size: 15px">小幅降价！</p>
                 <span class="text">您从{{obj.from}}关注的商品:<br>{{obj.title}}<br> 从 ￥</span>

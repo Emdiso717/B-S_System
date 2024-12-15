@@ -154,7 +154,12 @@ export default {
             <div class="card_body">
               <img class="image" :src="good.img" :alt="good.id">
               <p class="card_font">{{good.title}}</p>
-              <p class="card_price">￥{{good.price}}</p>
+              <p class="card_price" v-if="good.price > 0">
+                ￥{{ good.price }}
+              </p>
+              <p class="card_price" v-else>
+                无货或已下架
+              </p>
               <p class="card_font card_shop_font">{{good.from}}</p>
             </div>
             <template #footer >

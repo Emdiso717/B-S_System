@@ -13,7 +13,7 @@ const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
-axios.defaults.baseURL = ' http://172.20.10.3:8000';
+axios.defaults.baseURL = 'http://10.162.231.8:8000';
 app.use(ElementPlus)
 app.use(createPinia())
 app.use(router)
