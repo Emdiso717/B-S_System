@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+    django:
+        build: ./djangoProject
+        ports:
+          - "8000:8000"
+        container_name: django
+        depends_on:
+            - mysql
+        entrypoint: /wait-for-it.sh
+
+    mysql:
+        image: mysql:8
+        container_name: mysql
+        ports:
+          - "3307:3306"
+        environment:
+          MYSQL_ROOT_PASSWORD: "123717"
+          MYSQL_DATABASE: "commodity_system"
+        restart: always
+        volumes:
+            - mysql:/var/lib/mysql
+
+    vue:
+      build: ./front
+      ports:
+        - "8080:80"
+volumes:
+    mysql:
+
