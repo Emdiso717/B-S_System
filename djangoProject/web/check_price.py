@@ -1,7 +1,8 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support import expected_conditions as EC
 from lxml import etree
 from time import sleep
@@ -68,13 +69,16 @@ def send_emails():
 
 
 def check_price():
-    options = EdgeOptions()
+    options = ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=ImagesEnabled")
     options.add_argument("--disable-javascript")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    driver = webdriver.Edge(options=options)
+    service = Service(executable_path='/app/web/chromedriver-linux64/chromedriver')
+    driver = webdriver.Chrome(service=service, options=options)
     driver.execute_cdp_cmd(
         "Page.addScriptToEvaluateOnNewDocument",
         {

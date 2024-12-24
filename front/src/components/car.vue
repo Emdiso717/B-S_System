@@ -78,7 +78,7 @@ export default {
     search_car(){
       axios.post("/scar",
           {
-            account:this.account,
+            "account":this.account,
           }).then(response => {
         let message = response.data
         if(message.length ===0){
@@ -95,8 +95,8 @@ export default {
     delete_car(good){
       axios.post("/delete",
           {
-            account:this.account,
-            good_id:good.id
+            "account":this.account,
+            "good_id":good.id
           }).then(response => {
         let message = response.data
         if(message.includes("success")){

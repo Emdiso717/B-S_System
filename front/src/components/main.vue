@@ -44,9 +44,9 @@ export default {
     Search(){
       this.load=true;
       Promise.all([
-        axios.post("/searchJD", {search:this.search}),
-        axios.post("/searchSN", {search:this.search}),
-        axios.post("/searchA", {search:this.search}),
+        axios.post("/searchJD", {"search":this.search}),
+        axios.post("/searchSN", {"search":this.search}),
+        axios.post("/searchA", {"search":this.search}),
       ]).then(response => {
         const [response1, response2, response3] = response;
         let message1 = response1.data
@@ -64,13 +64,13 @@ export default {
     add_car_JD(good){
       axios.post("/add",
           {
-            good_id:good.id,
-            good_from:'JD',
-            good_title:good.title,
-            good_link:good.link,
-            good_img:good.img,
-            account:this.account,
-            good_price:good.price
+            "good_id":good.id,
+            "good_from":'JD',
+            "good_title":good.title,
+            "good_link":good.link,
+            "good_img":good.img,
+            "account":this.account,
+            "good_price":good.price
           }).then(response => {
         let message = response.data
         if(message.includes("success")){
@@ -83,13 +83,13 @@ export default {
     add_car_SN(good){
       axios.post("/add",
           {
-            good_id:good.id,
-            good_from:'SN',
-            good_title:good.title,
-            good_link:good.link,
-            good_img:good.img,
-            account:this.account,
-            good_price:good.price
+            "good_id":good.id,
+            "good_from":'SN',
+            "good_title":good.title,
+            "good_link":good.link,
+            "good_img":good.img,
+            "account":this.account,
+            "good_price":good.price
           }).then(response => {
         let message = response.data
         if(message.includes("success")){
@@ -102,13 +102,13 @@ export default {
     add_car_A(good){
       axios.post("/add",
           {
-            good_id:good.id,
-            good_from:'A',
-            good_title:good.title,
-            good_link:good.link,
-            good_img:good.img,
-            account:this.account,
-            good_price:good.price
+            "good_id":good.id,
+            "good_from":'A',
+            "good_title":good.title,
+            "good_link":good.link,
+            "good_img":good.img,
+            "account":this.account,
+            "good_price":good.price
           }).then(response => {
         let message = response.data
         if(message.includes("success")){
@@ -168,7 +168,7 @@ export default {
     down(){
       axios.post("/down",
           {
-            account:this.account,
+            "account":this.account,
           }).then(response => {
         let message = response.data
         message.forEach((obj) => {

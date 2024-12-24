@@ -22,8 +22,8 @@ export default {
     Login(){
       axios.post("/login",
           {
-            account:this.account,
-            password:this.password
+            "account":this.account,
+            "password":this.password
           }).then(response => {
         const token = response.data.token;
         console.log('token：', token);
@@ -55,9 +55,9 @@ export default {
       else{
         axios.post("/login/register",
             {
-              account:this.new_account,
-              email:this.new_email,
-              password:this.new_password
+              "account":this.new_account,
+              "email":this.new_email,
+              "password":this.new_password
             }).then(response => {
           let message = response.data
           if (message.includes("success")) {

@@ -1,22 +1,27 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.support import expected_conditions as EC
 from lxml import etree
 from time import sleep
 import re
 import json
+
 src = 0
 
 def search_good(goods):
-    options = EdgeOptions()
+    options = ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=ImagesEnabled")
     options.add_argument("--disable-javascript")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    driver = webdriver.Edge(options=options)
+    service = Service(executable_path='/app/web/chromedriver-linux64/chromedriver')
+    driver = webdriver.Chrome(service=service, options=options)
     driver.execute_cdp_cmd(
         "Page.addScriptToEvaluateOnNewDocument",
         {
@@ -29,7 +34,7 @@ def search_good(goods):
         distance = i * 800
         js = "document.documentElement.scrollTop=%d" % distance
         driver.execute_script(js)
-        sleep(0.8)
+        sleep(1.3)
     html = etree.HTML(driver.page_source)
     li_list = html.xpath('//ul[@class="general clearfix"]/li')
     driver.quit()
@@ -37,48 +42,36 @@ def search_good(goods):
     good_all = []
     for li in li_list:
         if counter < 40:
-            counter=counter+1
+            counter = counter + 1
         else:
             break
         dic = {}
         dic["id"] = li.xpath("./@id")[0]
         goods_img = li.xpath('./div/div/div[@class="res-img"]/div/a/img/@src')
         dic["img"] = "https:" + goods_img[0]
-        title = li.xpath(
-            './div/div/div[@class="res-info"]/div[@class="title-selling-point"]/a/text()'
-        )
+        title = li.xpath('./div/div/div[@class="res-info"]/div[@class="title-selling-point"]/a/text()')
         dic["title"] = "".join(title)
-        dic["shop"] = "".join(
-            li.xpath(
-                './div/div/div[@class="res-info"]/div[@class="store-stock"]/a/text()'
-            )
-        )
-        dic["price"] = "".join(
-            li.xpath(
-                './div/div/div[@class="res-info"]/div[@class="price-box"]/span/i/text()|./div/div/div[@class="res-info"]/div[@class="price-box"]/span/text()'
-            )
-        )
-        # print(dic["price"])
+        dic["shop"] = "".join(li.xpath('./div/div/div[@class="res-info"]/div[@class="store-stock"]/a/text()'))
+        dic["price"] = "".join(li.xpath('./div/div/div[@class="res-info"]/div[@class="price-box"]/span/i/text()|./div/div/div[@class="res-info"]/div[@class="price-box"]/span/text()'))
         dic["price"] = dic["price"][2:]
-        dic["link"] = "https:" + "".join(
-            li.xpath(
-                './div/div/div[@class="res-info"]/div[@class="title-selling-point"]/a/@href'
-            )
-        )
+        dic["link"] = "https:" + "".join(li.xpath('./div/div/div[@class="res-info"]/div[@class="title-selling-point"]/a/@href'))
         good_all.append(dic)
     return good_all
 
 def login():
-    global  src
-    src=0
+    global src
+    src = 0
     url = "https://passport.suning.com/ids/login"
-    options = EdgeOptions()
+    options = ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-blink-features=ImagesEnabled")
     options.add_argument("--disable-javascript")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    driver = webdriver.Edge(options=options)
+    service = Service(executable_path='/app/web/chromedriver-linux64/chromedriver')
+    driver = webdriver.Chrome(service=service, options=options)
     driver.execute_cdp_cmd(
         "Page.addScriptToEvaluateOnNewDocument",
         {
@@ -95,7 +88,7 @@ def login():
         print("还未跳转")
     html = etree.HTML(driver.page_source)
     sleep(0.5)
-    src = "https://open.weixin.qq.com"+html.xpath('//div[@class="web_qrcode_img_wrp"]/img/@src')[0]
+    src = "https://open.weixin.qq.com" + html.xpath('//div[@class="web_qrcode_img_wrp"]/img/@src')[0]
     try:
         wait.until(EC.title_is("苏宁易购(Suning.com)-换新到苏宁 省钱更省心！"))
     except Exception as e:
@@ -107,11 +100,9 @@ def login():
         src = 0
         return True
 
-
 def get_src():
     global src
-    while src ==0:
+    while src == 0:
         pass
-    re_src =src
-    sec =0
+    re_src = src
     return re_src

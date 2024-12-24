@@ -40,7 +40,7 @@ export default {
     get_em(){
       axios.post("/get_account",
           {
-            account:this.account,
+            "account":this.account,
           }).then(response => {
         this.user = response.data;
       })
@@ -55,7 +55,7 @@ export default {
     down(){
       axios.post("/down",
           {
-            account:this.account,
+            "account":this.account,
           }).then(response => {
         this.downs = response.data;
       })

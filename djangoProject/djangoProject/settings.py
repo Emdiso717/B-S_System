@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'commodity_system',
         'USER' : 'root',
         'PASSWORD' :'123717',
-        'HOST' : '127.0.0.1',
+        'HOST' : 'mysql',
     }
 }
 
