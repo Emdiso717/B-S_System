@@ -1,5 +1,5 @@
 # 使用官方的 Node.js 镜像
-FROM node:16
+FROM node:20
 
 WORKDIR /app
 COPY package.json package-lock.json ./

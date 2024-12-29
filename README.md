@@ -1,19 +1,26 @@
 # 商品比价系统——Price Sleuth
 
-本项目基于Docker的前后端分离商品比价系统，使用Django + Vue.js + MySQL技术栈实现。
+## 文件介绍
 
-## 1 环境要求
+- `./doc`：中存放了四篇报告，设计报告、测试报告、用户使用手册、心得体会
+
+本项目基于Docker的前后端分离商品比价系统，使用Django + Vue.js + MySQL技术栈实现。
+可以简单使用服务器的部署网址登录使用：http://115.120.211.2:8080/
+但是由于服务器的性能并不好，更建议使用docker部署在本机，以下是部署方法：
+
+## 环境要求
 
 - Docker
 - Docker Compose
 - 相关镜像请确保一下镜像以及拉取，如果没有请手动拉取：
 ```bash
 docker pull python:3.11
-docker pull node:16
+docker pull node:20
 docker pull nginx
+docker pull myslq:8
 ```
 
-## 2 快速启动
+## 快速启动
 
 1. 克隆项目或者直接下载压缩包
 
@@ -30,7 +37,7 @@ docker-compose up -d
 - 前端界面: http://localhost:8080
 - 后端API: http://localhost:8000
 
-## 3 操作与测试
+## 操作与测试
 
 详细信息请见 `doc/用户使用手册.pdf` ,在这里简单介绍流程：
 
@@ -42,7 +49,7 @@ docker-compose up -d
   - 密码：12345678
 - 查询所有商品价格、发降价邮件
 
-## 4 服务配置
+## 服务配置
 
 | 服务   | 端口 | 说明                  |
 | ------ | ---- | --------------------- |
@@ -50,7 +57,7 @@ docker-compose up -d
 | Django | 8000 | 后端API服务           |
 | MySQL  | 3307 | 数据库 (外部访问端口) |
 
-## 5 数据库配置
+## 数据库配置
 
 - 数据库名：commodity_system
 - 端口：3307
