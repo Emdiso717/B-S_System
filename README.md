@@ -6,7 +6,12 @@
 
 - Docker
 - Docker Compose
-- 相关镜像
+- 相关镜像请确保一下镜像以及拉取，如果没有请手动拉取：
+```bash
+docker pull python:3.11
+docker pull node:16
+docker pull nginx
+```
 
 ## 2 快速启动
 

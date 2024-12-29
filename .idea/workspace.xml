@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="192e5a04-280a-432f-a886-9deea1a73bee" name="更改" comment="docker 部署完成">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BS.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="192e5a04-280a-432f-a886-9deea1a73bee" name="更改" comment="整体完成">
+      <change beforePath="$PROJECT_DIR$/ docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/djangoProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/front/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/wait-for-it.sh" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/wait-for-it.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/.vscode/extensions.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +275,15 @@
       <workItem from="1735023945134" duration="13464000" />
       <workItem from="1735056334565" duration="367000" />
       <workItem from="1735266714566" duration="4096000" />
-      <workItem from="1735282886974" duration="4294000" />
+      <workItem from="1735282886974" duration="4482000" />
+      <workItem from="1735312884189" duration="1011000" />
+      <workItem from="1735314132614" duration="8000" />
+      <workItem from="1735314154994" duration="12000" />
+      <workItem from="1735358965135" duration="2301000" />
+      <workItem from="1735369661588" duration="23000" />
+      <workItem from="1735370768424" duration="1209000" />
+      <workItem from="1735404018699" duration="75000" />
+      <workItem from="1735454822951" duration="147000" />
     </task>
     <task id="LOCAL-00001" summary="前端登录注册完成，后端登录接口实现">
       <option name="closed" value="true" />
@@ -416,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735047527488</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="整体完成">
+      <option name="closed" value="true" />
+      <created>1735289116935</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735289116935</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +456,8 @@
     <MESSAGE value="基本逻辑修正 添加token处理登录 修改唯品会登录逻辑" />
     <MESSAGE value="添加降价邮箱提醒 完善系统管理员逻辑 完整项目完成！！！！！ 完结撒花" />
     <MESSAGE value="docker 部署完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker 部署完成" />
+    <MESSAGE value="整体完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="整体完成" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BS$manage.coverage" NAME="manage 覆盖结果" MODIFIED="1734682082740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject" />

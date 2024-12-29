@@ -2,7 +2,7 @@
 
 # 使用Python脚本检查MySQL连接
 check_db() {
-python << END
+python3 << END
 import sys
 import time
 import MySQLdb
